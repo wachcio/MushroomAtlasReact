@@ -1,4 +1,5 @@
 import './App.css';
+import bacground from './img/robert-wiedemann-pslVHH-4fZw-unsplash.jpg';
 // import logo from './logo.svg';
 
 function App() {
@@ -8,7 +9,10 @@ function App() {
         <div
           className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12"
           style={{
-            backgroundImage: `url('https://picsum.photos/id/1018/2000')`,
+            backgroundImage: `url('${bacground}')`,
+            backgroundSize: `cover`,
+            backgroundPosition: `center`,
+            backgroundAttachment: `fixed`,
           }}
         >
           <div className="relative py-3 sm:max-w-xl sm:mx-auto">
