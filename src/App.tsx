@@ -8,7 +8,7 @@ function App() {
         <div
           className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12"
           style={{
-            backgroundImage: `url('https://picsum.photos/id/1018/1000')`,
+            backgroundImage: `url('https://picsum.photos/id/1018/2000')`,
           }}
         >
           <div className="relative py-3 sm:max-w-xl sm:mx-auto">
@@ -22,6 +22,7 @@ function App() {
                 </div>
                 <div className="divide-y divide-gray-200">
                   <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                    <p>{process.env.REACT_APP_TEST}</p>
                     <p>
                       An advanced online playground for Tailwind CSS, including
                       support for things like:
