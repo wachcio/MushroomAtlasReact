@@ -1,4 +1,5 @@
 import React from 'react';
+import StoreProvider from './store/storeProvider';
 import './App.css';
 import bacground from './img/robert-wiedemann-pslVHH-4fZw-unsplash.jpg';
 import { getShortDataMushroom } from './utils/API';
@@ -11,8 +12,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
-        <div className="App">
+      <div className="App">
+        <StoreProvider>
           <div
             className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12"
             style={{
@@ -124,8 +125,8 @@ class App extends React.Component {
               </div>
             </div>
           </div>
-        </div>
-      </>
+        </StoreProvider>
+      </div>
     );
   }
 }
