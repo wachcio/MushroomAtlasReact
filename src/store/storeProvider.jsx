@@ -14,11 +14,26 @@ const StoreProvider = (props) => {
     isLogged: false,
     token: null,
   });
+  const [mushroomShortData, setMushroomShortData] = useStateWithLabel(
+    'mushroomShortData',
+    [
+      {
+        anotherNames: null,
+        application: null,
+        id: null,
+        polishName: null,
+        scientificName: null,
+        slug: null,
+      },
+    ],
+  );
   return (
     <StoreContext.Provider
       value={{
         userData,
         setUserData,
+        mushroomShortData,
+        setMushroomShortData,
       }}
     >
       {props.children}
