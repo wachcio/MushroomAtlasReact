@@ -37,6 +37,9 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'no-console': 'off',
+    'react/prop-types': ['off'],
+    'react/destructuring-assignment': 'off',
+    'import/prefer-default-export': 'off',
   },
   settings: {
     react: {

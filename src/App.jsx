@@ -1,7 +1,7 @@
 import React from 'react';
 import StoreProvider from './store/storeProvider';
 import './App.css';
-import Main from './components/Main';
+import Main from './components/pages/Main';
 
 const App = () => {
   return (
