@@ -8,25 +8,11 @@ export const StoreContext = createContext(null);
 
 const StoreProvider = (props) => {
   // User data
-  const [userData, setUserData] = useStateWithLabel('userData', {
-    username: null,
-    email: null,
-    isLogged: false,
-    token: null,
-  });
-  const [mushroomShortData, setMushroomShortData] = useStateWithLabel(
-    'mushroomShortData',
-    [
-      {
-        anotherNames: null,
-        application: null,
-        id: null,
-        polishName: null,
-        scientificName: null,
-        slug: null,
-      },
-    ],
-  );
+  const [userData, setUserData] = useStateWithLabel('userData', {});
+  const [
+    mushroomShortData,
+    setMushroomShortData,
+  ] = useStateWithLabel('mushroomShortData', [{}]);
   return (
     <StoreContext.Provider
       value={{
