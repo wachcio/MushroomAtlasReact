@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MushroomItem from '../atoms/MushroomItemShortData';
+import MushroomItem from '../atoms/MushroomCardShortData';
 import WrapperBackgroundWhite from '../atoms/WrapperBackroundWhite';
 
 function MushroomListShortData({ mushroomShortData }) {

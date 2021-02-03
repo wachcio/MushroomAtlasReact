@@ -18,6 +18,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-image": "^4.0.3",
     "react-scripts": "4.0.1",
     "styled-components": "^5.2.1",
     "tailwind-glassmorphism": "^1.0.6",

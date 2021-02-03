@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { StoreContext } from '../../store/storeProvider';
-import bacground from '../../img/robert-wiedemann-pslVHH-4fZw-unsplash.jpg';
+
 import { getShortDataMushroom } from '../../utils/API';
 
 import MushroomListShortData from '../molecules/MushroomListShortData';
@@ -15,15 +15,7 @@ const Main = () => {
   }, []);
 
   return (
-    <div
-      className="min-h-screen bg-gray-100 py-6 grid   sm:grid-cols-1  md:grid-cols-2 xl:grid-cols-3 justify-center sm:py-12"
-      style={{
-        backgroundImage: `url('${bacground}')`,
-        backgroundSize: `cover`,
-        backgroundPosition: `center`,
-        backgroundAttachment: `fixed`,
-      }}
-    >
+    <div className="  py-6 grid  sm:grid-cols-1  md:grid-cols-2 xl:grid-cols-3 xl:grid-cols-4 justify-center sm:py-12">
       {mushroomShortData != null ? (
         <MushroomListShortData mushroomShortData={mushroomShortData} />
       ) : (
