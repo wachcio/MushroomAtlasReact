@@ -40,6 +40,8 @@ module.exports = {
     'react/prop-types': ['off'],
     'react/destructuring-assignment': 'off',
     'import/prefer-default-export': 'off',
+    'global-require': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
   },
   settings: {
     react: {

@@ -1,9 +1,18 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import ApplicationImage from './ApplicationImage';
+import IsLegallyProtected from './IsLegallyProtected';
+import ApprovedForTrade from './ApprovedForTrade';
 
 function MushroomItemShortData({
-  mushroom: { polishName, scientificName, anotherNames, application },
+  mushroom: {
+    polishName,
+    scientificName,
+    anotherNames,
+    application,
+    isLegallyProtected,
+    approvedForTrade,
+  },
 }) {
   return (
     <>
@@ -12,6 +21,10 @@ function MushroomItemShortData({
           {polishName}
         </h1>
         <ApplicationImage imageName={application} />
+        {isLegallyProtected ? <IsLegallyProtected /> : null}
+        {approvedForTrade && application === 'edible' ? (
+          <ApprovedForTrade />
+        ) : null}
       </div>
       <p>Nazwa naukowa: {scientificName}</p>
       <p>Inne nazwy: {anotherNames}</p>
