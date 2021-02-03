@@ -16,7 +16,7 @@ const Main = () => {
 
   return (
     <div
-      className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12"
+      className="min-h-screen bg-gray-100 py-6 grid   sm:grid-cols-1  md:grid-cols-2 xl:grid-cols-3 justify-center sm:py-12"
       style={{
         backgroundImage: `url('${bacground}')`,
         backgroundSize: `cover`,
