@@ -4,6 +4,7 @@ import StoreProvider from './store/storeProvider';
 import './App.css';
 import Main from './components/pages/Main';
 import MushroomDetails from './components/pages/MushroomDetails';
+import ErrorPage from './components/pages/ErrorPage';
 import bacground from './img/robert-wiedemann-pslVHH-4fZw-unsplash.jpg';
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
             <Switch>
               <Route path="/" exact component={Main} />
               <Route path="/mushroom_details" component={MushroomDetails} />
+              <Route path="*" component={ErrorPage} status={404} />
             </Switch>
           </div>
         </StoreProvider>
