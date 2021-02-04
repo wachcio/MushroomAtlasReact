@@ -1,7 +1,11 @@
+/* eslint-disable no-nested-ternary */
 import React, { useContext, useEffect } from 'react';
 import { StoreContext } from '../../store/storeProvider';
-import { getShortDataMushroom } from '../../utils/API';
+import { getShortDataMushroom, getOneDataMushroom } from '../../utils/API';
+import useStateWithLabel from '../../utils/useStateWhitLabel';
 import WrapperBackroundWhite from '../atoms/WrapperBackroundWhite';
+import ErrorPage from '../pages/ErrorPage';
+import MushroomCardData from '../atoms/MushroomCardData';
 
 export default function MushroomDetails({
   match: {
@@ -9,6 +13,14 @@ export default function MushroomDetails({
   },
 }) {
   const { mushroomShortData, setMushroomShortData } = useContext(StoreContext);
+  const [isCorrectSlug, setIsCorrectSlug] = useStateWithLabel(
+    'isCorrectSlug',
+    null,
+  );
+  const [currentMushroom, setCurrentMushroom] = useStateWithLabel(
+    'currentMushroom',
+    null,
+  );
 
   useEffect(() => {
     if (mushroomShortData == null) {
@@ -16,42 +28,46 @@ export default function MushroomDetails({
         const data = await getShortDataMushroom();
         await setMushroomShortData(data);
       })();
-
-      //   console.log('details useEffect', mushroomShortData);
-
-      //   if (mushroomShortData.lenght) {
-      //     const isCorrectSlug = mushroomShortData.find(
-      //       (element) => element.slug === slug,
-      //     );
-      //     console.log('slug:', isCorrectSlug);
-      //   }
     } else {
       (async () => {
-        let isCorrectSlug = null;
+        const data = await getOneDataMushroom(slug);
 
-        // getShortDataMushroom();
-        // setMushroomShortData(data);
-        await console.log(mushroomShortData);
-
-        isCorrectSlug = mushroomShortData.find(
-          (element) => element.slug === slug,
-        );
-        console.log(isCorrectSlug);
-        if (!isCorrectSlug) {
-          console.log('slug niepoprawny');
-        } else {
-          console.log('slug znaleziony');
-        }
+        await setCurrentMushroom(data[0]);
       })();
+      setIsCorrectSlug(
+        Boolean(
+          mushroomShortData.findIndex((element) => element.slug === slug) + 1,
+        ),
+      );
+      //   setCurrentMushroom(
+      //     mushroomShortData.find((element) => element.slug === slug),
+      //   );
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mushroomShortData]);
+
+  useEffect(() => {
+    console.log('isCorrectSlug', isCorrectSlug);
+    if (!isCorrectSlug) {
+      console.log('slug niepoprawny');
+    } else {
+      console.log('slug znaleziony');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isCorrectSlug]);
 
   return (
     <div>
       <WrapperBackroundWhite>
-        {mushroomShortData != null ? (
-          <p>Szczegóły o grzybie o slug: {slug}</p>
+        {mushroomShortData != null &&
+        isCorrectSlug != null &&
+        currentMushroom != null ? (
+          isCorrectSlug ? (
+            <MushroomCardData mushroom={currentMushroom} />
+          ) : (
+            <ErrorPage />
+          )
         ) : (
           <p>Loading</p>
         )}

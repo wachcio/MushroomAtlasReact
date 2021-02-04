@@ -3,7 +3,7 @@ import img404 from '../../img/404.png';
 
 const ErrorPage = () => {
   return (
-    <div>
+    <div className="flex flex-center">
       <div>
         <h1>404</h1>
         <p>Niestety nie znaleziono strony.</p>
