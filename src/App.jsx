@@ -23,7 +23,10 @@ const App = () => {
           >
             <Switch>
               <Route path="/" exact component={Main} />
-              <Route path="/mushroom_details" component={MushroomDetails} />
+              <Route
+                path="/mushroom_details/:slug"
+                component={MushroomDetails}
+              />
               <Route path="*" component={ErrorPage} status={404} />
             </Switch>
           </div>

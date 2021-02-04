@@ -9,7 +9,11 @@ const Main = () => {
   const { mushroomShortData, setMushroomShortData } = useContext(StoreContext);
   useEffect(() => {
     (async () => {
-      await setMushroomShortData(await getShortDataMushroom());
+      const data = await getShortDataMushroom();
+      console.log(data);
+
+      await setMushroomShortData(data);
+      console.log('mushroom Short Data', mushroomShortData);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

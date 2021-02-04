@@ -2,7 +2,7 @@
 import axios from 'axios';
 // import { StoreContext } from '../store/storeProvider';
 
-export const API = axios.create({
+const API = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   // baseURL: `http://mushroomatlasapi.wachcio.pl/api/v1`,
   responseType: 'json',
