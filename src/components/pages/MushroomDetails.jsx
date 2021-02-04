@@ -1,27 +1,35 @@
 import React, { useContext, useEffect } from 'react';
 import { StoreContext } from '../../store/storeProvider';
 import { getShortDataMushroom } from '../../utils/API';
+import WrapperBackroundWhite from '../atoms/WrapperBackroundWhite';
 
 export default function MushroomDetails({
   match: {
     params: { slug },
   },
 }) {
-  const { mushroomShortData } = useContext(StoreContext);
+  const { mushroomShortData, setMushroomShortData } = useContext(StoreContext);
 
   useEffect(() => {
-    if (mushroomShortData != null) {
-      if (mushroomShortData.lenght) {
-        const isCorrectSlug = mushroomShortData.find(
-          (element) => element.slug === slug,
-        );
-        console.log('slug:', isCorrectSlug);
-      }
+    if (mushroomShortData == null) {
+      (async () => {
+        const data = await getShortDataMushroom();
+        await setMushroomShortData(data);
+      })();
+
+      //   console.log('details useEffect', mushroomShortData);
+
+      //   if (mushroomShortData.lenght) {
+      //     const isCorrectSlug = mushroomShortData.find(
+      //       (element) => element.slug === slug,
+      //     );
+      //     console.log('slug:', isCorrectSlug);
+      //   }
     } else {
       (async () => {
         let isCorrectSlug = null;
 
-        getShortDataMushroom();
+        // getShortDataMushroom();
         // setMushroomShortData(data);
         await console.log(mushroomShortData);
 
@@ -37,11 +45,17 @@ export default function MushroomDetails({
       })();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slug]);
+  }, [mushroomShortData]);
 
   return (
     <div>
-      <p>Szczegóły o grzybie o slug: {slug}</p>
+      <WrapperBackroundWhite>
+        {mushroomShortData != null ? (
+          <p>Szczegóły o grzybie o slug: {slug}</p>
+        ) : (
+          <p>Loading</p>
+        )}
+      </WrapperBackroundWhite>
     </div>
   );
 }
