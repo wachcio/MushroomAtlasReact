@@ -3,6 +3,7 @@ import React from 'react';
 import ApplicationImage from './ApplicationImage';
 import IsLegallyProtected from './IsLegallyProtected';
 import ApprovedForTrade from './ApprovedForTrade';
+import getFullPlDate from '../../utils/date';
 
 function MushroomItemData({
   mushroom: {
@@ -12,9 +13,27 @@ function MushroomItemData({
     application,
     isLegallyProtected,
     approvedForTrade,
+    createAt,
+    updateAt,
+    dataSources,
+    description: {
+      cap,
+      capImprint,
+      characteristics,
+      comments,
+      dimensions,
+      flesh,
+      frequency,
+      occurrence,
+      possibleConfusion,
+      stem,
+      underCap,
+      value,
+    },
+    images,
   },
 }) {
-  console.log(polishName);
+  console.log(dataSources);
 
   return (
     <>
@@ -30,6 +49,28 @@ function MushroomItemData({
       </div>
       <p>Nazwa naukowa: {scientificName}</p>
       <p>Inne nazwy: {anotherNames}</p>
+      <p className="font-bold mt-2">Opis:</p>
+      <p>Kapelusz: {cap}</p>
+      <p>Pod kapeluszem: {underCap}</p>
+      <p>Przekrój kapelusza: {capImprint}</p>
+      <p>Miąższ: {flesh}</p>
+      <p>Trzon: {stem}</p>
+      <p>Cechy charakterystyczne: {characteristics}</p>
+      <p>Rozmiar: {dimensions}</p>
+      <p>Częstotliwość występowania: {frequency}</p>
+      <p>Występowanie: {occurrence}</p>
+      <p>Możliwe pomyłki: {possibleConfusion}</p>
+      <p>Walory smakowe: {value}</p>
+      <p>Uwagi: {comments}</p>
+      {dataSources.length ? <p>Źródła danych:</p> : null}
+      {dataSources.length
+        ? dataSources.map((v) => <p key={`${v}_source`}>{v}</p>)
+        : null}
+      <p>Zdjęcia: {images}</p>
+      <p>Dodano: {getFullPlDate(createAt)}</p>
+      {createAt !== updateAt ? (
+        <p>Modyfikacja: {getFullPlDate(updateAt)}</p>
+      ) : null}
     </>
   );
 }

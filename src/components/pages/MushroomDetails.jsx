@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useContext, useEffect } from 'react';
 import { StoreContext } from '../../store/storeProvider';
-import { getShortDataMushroom, getOneDataMushroom } from '../../utils/API';
+import { getShortDataMushroom, getSlugDataMushroom } from '../../utils/API';
 import useStateWithLabel from '../../utils/useStateWhitLabel';
 import WrapperBackroundWhite from '../atoms/WrapperBackroundWhite';
 import ErrorPage from '../pages/ErrorPage';
@@ -30,9 +30,9 @@ export default function MushroomDetails({
       })();
     } else {
       (async () => {
-        const data = await getOneDataMushroom(slug);
+        const data = await getSlugDataMushroom(slug);
 
-        await setCurrentMushroom(data[0]);
+        await setCurrentMushroom(data);
       })();
       setIsCorrectSlug(
         Boolean(
@@ -60,11 +60,13 @@ export default function MushroomDetails({
   return (
     <div>
       <WrapperBackroundWhite>
-        {mushroomShortData != null &&
-        isCorrectSlug != null &&
-        currentMushroom != null ? (
+        {mushroomShortData != null && isCorrectSlug != null ? (
           isCorrectSlug ? (
-            <MushroomCardData mushroom={currentMushroom} />
+            currentMushroom != null ? (
+              <MushroomCardData mushroom={currentMushroom} />
+            ) : (
+              <p>Loading</p>
+            )
           ) : (
             <ErrorPage />
           )

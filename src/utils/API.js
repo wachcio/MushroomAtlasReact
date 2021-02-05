@@ -13,7 +13,12 @@ export const getAllDataMushroom = () => {
     return res.data;
   });
 };
-export const getOneDataMushroom = (mushroom) => {
+export const getSlugDataMushroom = (slug) => {
+  return API.get(`/mushroom/slug/${slug}`).then((res) => {
+    return res.data;
+  });
+};
+export const getSearchDataMushroom = (mushroom) => {
   return API.get(`/mushroom/${mushroom}`).then((res) => {
     return res.data;
   });

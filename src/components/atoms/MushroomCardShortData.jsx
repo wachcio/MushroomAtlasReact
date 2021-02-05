@@ -7,6 +7,7 @@ import ApprovedForTrade from './ApprovedForTrade';
 
 function MushroomItemShortData({
   mushroom: {
+    id,
     polishName,
     scientificName,
     anotherNames,
@@ -18,7 +19,7 @@ function MushroomItemShortData({
 }) {
   return (
     <>
-      <Link to={`/mushroom_details/${slug}`}>
+      <Link to={{ pathname: `/mushroom_details/${slug}`, state: id }}>
         <div className="flex flex-row flex-nowrap flex-auto items-center">
           <h1 className="flex-grow pt-1 top-0 left-0 text-lg text-left leading-6 font-bold sm:text-lg sm:leading-7">
             {polishName}
