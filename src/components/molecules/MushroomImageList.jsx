@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import useStateWithLabel from '../../hooks/useStateWhitLabel';
 import MushroomImage from '../atoms/MushroomImage';
 
-function MushroomImageList({ mushroom: { images, id } }) {
+function MushroomImageList({ mushroom: { images, id, polishName } }) {
   const [imagesLinks, setImageslinks] = useStateWithLabel('imagesLinks', []);
 
   useEffect(() => {
@@ -16,15 +16,21 @@ function MushroomImageList({ mushroom: { images, id } }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return
-  (
-    <div>
-
-        {imagesLinks != null && imagesLinks.map(v) => <MushroomImage props={v} key={v} }
-    </div>
+  return (
+    <>
+      <h1>Galeria:</h1>
+      <div className="flex flex-col sm:flex-row sm:flex-wrap w-100 justify-center items-center">
+        {imagesLinks != null &&
+          imagesLinks.map((v, i) => (
+            <MushroomImage
+              patch={v}
+              key={v}
+              imageTitle={`${polishName} - zdjęcie ${i + 1}`}
+            />
+          ))}
+      </div>
+    </>
   );
 }
 
 export default MushroomImageList;
-
-
