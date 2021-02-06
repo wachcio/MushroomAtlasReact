@@ -1,5 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
+import Linkify from 'react-linkify';
 import ApplicationImage from './ApplicationImage';
 import IsLegallyProtected from './IsLegallyProtected';
 import ApprovedForTrade from './ApprovedForTrade';
@@ -30,7 +31,6 @@ function MushroomItemData({
       underCap,
       value,
     },
-    images,
   },
 }) {
   return (
@@ -62,9 +62,12 @@ function MushroomItemData({
       <p>Uwagi: {comments}</p>
       {dataSources.length ? <p>Źródła danych:</p> : null}
       {dataSources.length
-        ? dataSources.map((v) => <p key={`${v}_source`}>{v}</p>)
+        ? dataSources.map((v) => (
+            <p key={`${v}_source`}>
+              <Linkify>{v}</Linkify>
+            </p>
+          ))
         : null}
-      <p>Zdjęcia: {images}</p>
       <p>Dodano: {getFullPlDate(createAt)}</p>
       {createAt !== updateAt ? (
         <p>Modyfikacja: {getFullPlDate(updateAt)}</p>
