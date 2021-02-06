@@ -2,7 +2,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { createContext } from 'react';
-import useStateWithLabel from '../utils/useStateWhitLabel';
+import useStateWithLabel from '../hooks/useStateWhitLabel';
 
 export const StoreContext = createContext(null);
 

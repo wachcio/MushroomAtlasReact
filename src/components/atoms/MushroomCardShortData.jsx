@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import ApplicationImage from './ApplicationImage';
 import IsLegallyProtected from './IsLegallyProtected';
@@ -6,28 +7,32 @@ import ApprovedForTrade from './ApprovedForTrade';
 
 function MushroomItemShortData({
   mushroom: {
+    id,
     polishName,
     scientificName,
     anotherNames,
     application,
     isLegallyProtected,
     approvedForTrade,
+    slug,
   },
 }) {
   return (
     <>
-      <div className="flex flex-row flex-nowrap flex-auto items-center">
-        <h1 className="flex-grow pt-1 top-0 left-0 text-lg text-left leading-6 font-bold sm:text-lg sm:leading-7">
-          {polishName}
-        </h1>
-        <ApplicationImage imageName={application} />
-        {isLegallyProtected ? <IsLegallyProtected /> : null}
-        {approvedForTrade && application === 'edible' ? (
-          <ApprovedForTrade />
-        ) : null}
-      </div>
-      <p>Nazwa naukowa: {scientificName}</p>
-      <p>Inne nazwy: {anotherNames}</p>
+      <Link to={{ pathname: `/mushroom_details/${slug}`, state: id }}>
+        <div className="flex flex-row flex-nowrap flex-auto items-center">
+          <h1 className="flex-grow pt-1 top-0 left-0 text-lg text-left leading-6 font-bold sm:text-lg sm:leading-7">
+            {polishName}
+          </h1>
+          <ApplicationImage imageName={application} />
+          {isLegallyProtected ? <IsLegallyProtected /> : null}
+          {approvedForTrade && application === 'edible' ? (
+            <ApprovedForTrade />
+          ) : null}
+        </div>
+        <p>Nazwa naukowa: {scientificName}</p>
+        <p>Inne nazwy: {anotherNames}</p>
+      </Link>
     </>
   );
 }
