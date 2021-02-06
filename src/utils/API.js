@@ -23,6 +23,11 @@ export const getSearchDataMushroom = (mushroom) => {
     return res.data;
   });
 };
+export const getMushroomImage = (mushroomId, imageNumber) => {
+  return API.get(`/image/${mushroomId}/${imageNumber}`).then((res) => {
+    return res.data;
+  });
+};
 
 export const getShortDataMushroom = async () => {
   return API.get('/mushroom/shortdata').then((res) => {

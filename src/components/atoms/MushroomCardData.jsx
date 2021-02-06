@@ -33,8 +33,6 @@ function MushroomItemData({
     images,
   },
 }) {
-  console.log(dataSources);
-
   return (
     <>
       <div className="flex flex-row flex-nowrap flex-auto items-center">

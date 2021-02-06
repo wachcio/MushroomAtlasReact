@@ -57,7 +57,7 @@ export default function MushroomDetails({
             currentMushroom != null ? (
               <>
                 <MushroomCardData mushroom={currentMushroom} />
-                {currentMushroom.images.lenght > 0 && (
+                {currentMushroom.images > 0 && (
                   <MushroomImageList mushroom={currentMushroom} />
                 )}
               </>
