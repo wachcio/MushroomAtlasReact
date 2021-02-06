@@ -23,11 +23,16 @@ const Main = () => {
   // }, [mushroomShortData]);
 
   return (
-    <div className="  py-6 grid  sm:grid-cols-1  md:grid-cols-2 xl:grid-cols-3 xl:grid-cols-4 justify-center sm:py-12">
+    <div className="  py-6 grid  sm:grid-cols-1  md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 justify-center sm:py-12">
       {mushroomShortData != null ? (
         <MushroomListShortData mushroomShortData={mushroomShortData} />
       ) : (
-        <h1>Loading</h1>
+        <div className="flex absolute h-90 w-full justify-center items-center">
+          <span
+            className="animate-ping  h-20 w-20 rounded-full bg-green-400 opacity-75"
+            viewBox="0 0 24 24"
+          />
+        </div>
       )}
     </div>
   );

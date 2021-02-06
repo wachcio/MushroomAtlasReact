@@ -2,10 +2,11 @@
 import React, { useContext, useEffect } from 'react';
 import { StoreContext } from '../../store/storeProvider';
 import { getShortDataMushroom, getSlugDataMushroom } from '../../utils/API';
-import useStateWithLabel from '../../utils/useStateWhitLabel';
+import useStateWithLabel from '../../hooks/useStateWhitLabel';
 import WrapperBackroundWhite from '../atoms/WrapperBackroundWhite';
 import ErrorPage from '../pages/ErrorPage';
 import MushroomCardData from '../atoms/MushroomCardData';
+import MushroomImageList from '../molecules/MushroomImageList';
 
 export default function MushroomDetails({
   match: {
@@ -39,23 +40,14 @@ export default function MushroomDetails({
           mushroomShortData.findIndex((element) => element.slug === slug) + 1,
         ),
       );
-      //   setCurrentMushroom(
-      //     mushroomShortData.find((element) => element.slug === slug),
-      //   );
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mushroomShortData]);
-
-  useEffect(() => {
-    console.log('isCorrectSlug', isCorrectSlug);
-    if (!isCorrectSlug) {
-      console.log('slug niepoprawny');
-    } else {
-      console.log('slug znaleziony');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isCorrectSlug]);
+  }, [
+    mushroomShortData,
+    setCurrentMushroom,
+    setIsCorrectSlug,
+    setMushroomShortData,
+    slug,
+  ]);
 
   return (
     <div>
@@ -63,7 +55,12 @@ export default function MushroomDetails({
         {mushroomShortData != null && isCorrectSlug != null ? (
           isCorrectSlug ? (
             currentMushroom != null ? (
-              <MushroomCardData mushroom={currentMushroom} />
+              <>
+                <MushroomCardData mushroom={currentMushroom} />
+                {currentMushroom.images.lenght > 0 && (
+                  <MushroomImageList mushroom={currentMushroom} />
+                )}
+              </>
             ) : (
               <p>Loading</p>
             )
