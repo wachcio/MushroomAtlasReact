@@ -7,6 +7,7 @@ import WrapperBackroundWhite from '../atoms/WrapperBackroundWhite';
 import ErrorPage from '../pages/ErrorPage';
 import MushroomCardData from '../atoms/MushroomCardData';
 import MushroomImageList from '../molecules/MushroomImageList';
+import Loading from '../atoms/Loading';
 
 export default function MushroomDetails({
   match: {
@@ -62,13 +63,13 @@ export default function MushroomDetails({
                 )}
               </>
             ) : (
-              <p>Loading</p>
+              <Loading />
             )
           ) : (
             <ErrorPage />
           )
         ) : (
-          <p>Loading</p>
+          <Loading />
         )}
       </WrapperBackroundWhite>
     </div>

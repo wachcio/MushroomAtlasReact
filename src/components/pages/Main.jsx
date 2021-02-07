@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { StoreContext } from '../../store/storeProvider';
 
 import { getShortDataMushroom } from '../../utils/API';
+import Loading from '../atoms/Loading';
 
 import MushroomListShortData from '../molecules/MushroomListShortData';
 
@@ -27,12 +28,7 @@ const Main = () => {
       {mushroomShortData != null ? (
         <MushroomListShortData mushroomShortData={mushroomShortData} />
       ) : (
-        <div className="flex absolute h-90 w-full justify-center items-center">
-          <span
-            className="animate-ping  h-20 w-20 rounded-full bg-green-400 opacity-75"
-            viewBox="0 0 24 24"
-          />
-        </div>
+        <Loading />
       )}
     </div>
   );
