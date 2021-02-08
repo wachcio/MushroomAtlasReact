@@ -66,9 +66,7 @@ export default function MushroomDetails({
             setIsLoaded(false)
           )
         ) : (
-          <WrapperBackroundWhite>
-            <ErrorPage />
-          </WrapperBackroundWhite>
+          <ErrorPage />
         )
       ) : (
         setIsLoaded(false)
