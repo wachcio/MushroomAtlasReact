@@ -6,14 +6,16 @@ import Main from './components/pages/Main';
 import MushroomDetails from './components/pages/MushroomDetails';
 import ErrorPage from './components/pages/ErrorPage';
 import bacground from './img/robert-wiedemann-pslVHH-4fZw-unsplash.jpg';
+import Loading from './components/atoms/Loading';
 
 const App = () => {
   return (
     <div className="App">
       <Router>
         <StoreProvider>
+          <Loading />
           <div
-            className="min-h-screen"
+            className="relative min-h-screen"
             style={{
               backgroundImage: `url('${bacground}')`,
               backgroundSize: `cover`,

@@ -2,11 +2,11 @@ import React, { useEffect, useContext } from 'react';
 import { StoreContext } from '../../store/storeProvider';
 
 import { getShortDataMushroom } from '../../utils/API';
-import Loading from '../atoms/Loading';
 
 import MushroomListShortData from '../molecules/MushroomListShortData';
 
 const Main = () => {
+  const { setIsLoaded } = useContext(StoreContext);
   const { mushroomShortData, setMushroomShortData } = useContext(StoreContext);
 
   useEffect(() => {
@@ -24,11 +24,14 @@ const Main = () => {
   // }, [mushroomShortData]);
 
   return (
-    <div className="  py-6 grid  sm:grid-cols-1  md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 justify-center sm:py-12">
+    <div className="py-6 grid  sm:grid-cols-1  md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 justify-center sm:py-12">
       {mushroomShortData != null ? (
-        <MushroomListShortData mushroomShortData={mushroomShortData} />
+        <>
+          {setIsLoaded(true)}
+          <MushroomListShortData mushroomShortData={mushroomShortData} />
+        </>
       ) : (
-        <Loading />
+        setIsLoaded(false)
       )}
     </div>
   );

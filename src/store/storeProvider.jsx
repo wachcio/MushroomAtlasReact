@@ -7,6 +7,7 @@ import useStateWithLabel from '../hooks/useStateWhitLabel';
 export const StoreContext = createContext(null);
 
 const StoreProvider = (props) => {
+  const [isLoaded, setIsLoaded] = useStateWithLabel('isLoaded', false);
   // User data
   const [userData, setUserData] = useStateWithLabel('userData', {});
   const [mushroomShortData, setMushroomShortData] = useStateWithLabel(
@@ -20,6 +21,8 @@ const StoreProvider = (props) => {
         setUserData,
         mushroomShortData,
         setMushroomShortData,
+        isLoaded,
+        setIsLoaded,
       }}
     >
       {props.children}

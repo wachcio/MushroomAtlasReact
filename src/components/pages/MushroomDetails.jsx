@@ -7,13 +7,13 @@ import WrapperBackroundWhite from '../atoms/WrapperBackroundWhite';
 import ErrorPage from '../pages/ErrorPage';
 import MushroomCardData from '../atoms/MushroomCardData';
 import MushroomImageList from '../molecules/MushroomImageList';
-import Loading from '../atoms/Loading';
 
 export default function MushroomDetails({
   match: {
     params: { slug },
   },
 }) {
+  const { setIsLoaded } = useContext(StoreContext);
   const { mushroomShortData, setMushroomShortData } = useContext(StoreContext);
   const [isCorrectSlug, setIsCorrectSlug] = useStateWithLabel(
     'isCorrectSlug',
@@ -52,26 +52,27 @@ export default function MushroomDetails({
 
   return (
     <div>
-      <WrapperBackroundWhite>
-        {mushroomShortData != null && isCorrectSlug != null ? (
-          isCorrectSlug ? (
-            currentMushroom != null ? (
-              <>
-                <MushroomCardData mushroom={currentMushroom} />
-                {currentMushroom.images > 0 && (
-                  <MushroomImageList mushroom={currentMushroom} />
-                )}
-              </>
-            ) : (
-              <Loading />
-            )
+      {mushroomShortData != null && isCorrectSlug != null ? (
+        isCorrectSlug ? (
+          currentMushroom != null ? (
+            <WrapperBackroundWhite>
+              {setIsLoaded(true)}
+              <MushroomCardData mushroom={currentMushroom} />
+              {currentMushroom.images > 0 && (
+                <MushroomImageList mushroom={currentMushroom} />
+              )}
+            </WrapperBackroundWhite>
           ) : (
-            <ErrorPage />
+            setIsLoaded(false)
           )
         ) : (
-          <Loading />
-        )}
-      </WrapperBackroundWhite>
+          <WrapperBackroundWhite>
+            <ErrorPage />
+          </WrapperBackroundWhite>
+        )
+      ) : (
+        setIsLoaded(false)
+      )}
     </div>
   );
 }
