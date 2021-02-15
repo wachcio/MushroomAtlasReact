@@ -27,47 +27,61 @@ function MushroomImageList({ mushroom: { images, id, polishName } }) {
   return (
     <>
       <h1>Galeria:</h1>
-      <Gallery>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr 1fr',
-            gridTemplateRows: '1fr',
-            gridGap: 12,
-          }}
-        >
-          {imagesLinks != null &&
-            imagesLinks.map((v, i) => (
-              <Item
-                original={v}
-                thumbnail={v}
-                // width="100%"
-                // height="100%"
-                // minWidth="1024"
-                // minHheight="768"
-                width="1024"
-                height="768"
-                key={v}
-              >
-                {({ ref, open }) => (
-                  <img
-                    style={{
-                      cursor: 'pointer',
-                      objectFit: 'cover',
-                      width: 'auto',
-                      maxHeight: '100%',
-                    }}
-                    ref={ref}
-                    onClick={open}
-                    src={v}
-                    imageTitle={`${polishName} - zdjęcie ${i + 1}`}
-                    alt={`${polishName} - zdjęcie ${i + 1}`}
-                  />
-                )}
-              </Item>
-            ))}
-        </div>
-      </Gallery>
+      <div className="relative container top-0 left-0">
+        <Gallery>
+          <div
+            style={{
+              display: 'grid',
+              alignItems: 'center',
+
+              gridTemplateColumns: '1fr 1fr 1fr 1fr',
+              gridTemplateRows: '1fr',
+              gridGap: 12,
+            }}
+          >
+            {imagesLinks != null &&
+              imagesLinks.map((v, i) => (
+                <Item
+                  original={v}
+                  thumbnail={v}
+                  width="1024"
+                  height="768"
+                  // minWidth="1024"
+                  // minHheight="768"
+                  // width="90vw"
+                  // height="60vh"
+                  key={v}
+                  style={{
+                    position: 'fixed',
+                    top: '0',
+                    left: '0',
+                    right: '0',
+                    bottom: '0',
+                    width: '100%',
+                    height: '100%',
+                  }}
+                >
+                  {({ ref, open }) => (
+                    <img
+                      style={{
+                        cursor: 'pointer',
+                        objectFit: 'cover',
+                        width: '100%',
+                        height: 'auto',
+                        maxHeight: '300px',
+                      }}
+                      ref={ref}
+                      onClick={open}
+                      src={v}
+                      imageTitle={`${polishName} - zdjęcie ${i + 1}`}
+                      alt={`${polishName} - zdjęcie ${i + 1}`}
+                    />
+                  )}
+                </Item>
+              ))}
+          </div>
+        </Gallery>
+      </div>
     </>
   );
 }

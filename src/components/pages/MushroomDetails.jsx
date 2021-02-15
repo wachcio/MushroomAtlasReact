@@ -55,13 +55,15 @@ export default function MushroomDetails({
       {mushroomShortData != null && isCorrectSlug != null ? (
         isCorrectSlug ? (
           currentMushroom != null ? (
-            <WrapperBackroundWhite>
-              {setIsLoaded(true)}
-              <MushroomCardData mushroom={currentMushroom} />
-              {currentMushroom.images > 0 && (
-                <MushroomImageList mushroom={currentMushroom} />
-              )}
-            </WrapperBackroundWhite>
+            <>
+              <WrapperBackroundWhite>
+                {setIsLoaded(true)}
+                <MushroomCardData mushroom={currentMushroom} />
+                {currentMushroom.images > 0 && (
+                  <MushroomImageList mushroom={currentMushroom} />
+                )}
+              </WrapperBackroundWhite>
+            </>
           ) : (
             setIsLoaded(false)
           )
